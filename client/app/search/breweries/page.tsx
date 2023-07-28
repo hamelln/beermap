@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Brewery from "src/types/Brewery";
+import BreweriesApi from "@/services/BreweriesApi";
+import Brewery from "@/types/Brewery";
+import styles from "./breweries.module.scss";
 
 interface Props {
   inputValue: string;
@@ -8,32 +9,47 @@ interface Props {
 
 const Breweries = ({ inputValue }: Props) => {
   const [breweriesList, setBreweriesList] = useState<Brewery[]>([]);
+  const breweriesApi = new BreweriesApi();
+
+  const handleBreweriesList = async () => {
+    if (!inputValue) setBreweriesList([]);
+    else {
+      const newBreweries = await breweriesApi.fetchBreweriesByInputValue(
+        inputValue
+      );
+      setBreweriesList(newBreweries);
+    }
+  };
 
   useEffect(() => {
-    const fetchBreweries = async () => {
-      try {
-        const response = await axios.get(
-          `http://localhost:3008/search?q=${inputValue}`
-        );
-        setBreweriesList(response.data);
-      } catch (error) {
-        console.error("Error fetching data from server:", error);
-      }
-    };
-
-    if (inputValue) {
-      fetchBreweries();
-    } else {
-      setBreweriesList([]);
-    }
+    handleBreweriesList();
   }, [inputValue]);
 
   return (
-    <div>
-      {breweriesList.map((brewery: Brewery) => (
-        <div key={brewery.id}>{brewery.name}</div>
-      ))}
-    </div>
+    <section className={styles.section}>
+      <ul className={styles.brewery_list} data-testid="searchResult">
+        {breweriesList.map((brewery: Brewery) => (
+          <li className={styles.brewery_item} key={brewery.id}>
+            <div className={styles.inner_box}>
+              <div className={styles.image_box}>
+                <img src="/test-image.png" alt="가게 이미지"></img>
+              </div>
+              <div className={styles.content_box}>
+                <div className={styles.brewery_name}>{brewery.name}</div>
+                <div className={styles.brewery_desc}>브루어리 소개문</div>
+                <div className={styles.recommend_box}>
+                  <span className={styles.recommend_title}>추천 맥주</span>
+                  <span className={styles.recommend_beer}>미노리 세션</span>
+                </div>
+              </div>
+            </div>
+            <div className={styles.address}>
+              <span>{brewery.address_1}</span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 };
 
