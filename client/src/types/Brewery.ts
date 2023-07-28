@@ -10,12 +10,13 @@ export default interface Brewery {
   address_3?: string;
   city: string;
   state_province: string;
-  postal_code: number;
+  postal_code: string;
   country: string;
   phone: string;
+  website_type?: string;
   website_url?: string;
-  longitude: string;
-  latitude: string;
+  longitude: number;
+  latitude: number;
   brewery_description?: string;
   signature_beer?: Beer;
   likes?: User[];
