@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState, ChangeEvent } from "react";
+import React, { ChangeEvent } from "react";
 import styles from "./searchBar.module.scss";
 
 interface Props {

@@ -1,7 +1,7 @@
 import React from "react";
 
 const Brewery = () => {
-  return <div></div>;
+  return <div>Brewery</div>;
 };
 
 export default Brewery;

@@ -1,3 +1,5 @@
+"use client";
+
 import React, { ChangeEvent, useState } from "react";
 import SearchBar from "./search-bar/page";
 import Breweries from "./breweries/page";
