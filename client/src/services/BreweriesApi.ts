@@ -1,10 +1,10 @@
 // src/services/BreweriesApi.ts
-import Brewery from "@/types/Brewery";
+import IBrewery from "@/types/Brewery";
 import axios, { AxiosResponse } from "axios";
 
 class BreweriesApi {
   private baseUrl: string;
-  private stubBreweries: Brewery[];
+  private stubBreweries: IBrewery[];
 
   constructor() {
     this.baseUrl = "http://localhost:3008";
@@ -446,14 +446,20 @@ class BreweriesApi {
     ];
   }
 
-  async fetchBreweriesByInputValue(query: string): Promise<Brewery[]> {
-    return this.stubBreweries.filter((brewery: Brewery) => {
+  async fetchBreweriesByInputValue(query: string): Promise<IBrewery[]> {
+    return this.stubBreweries.filter((brewery: IBrewery) => {
       return (
         brewery.name.includes(query) ||
         brewery.city.includes(query) ||
         brewery.state_province.includes(query)
       );
     });
+  }
+  async fetchBreweryById(breweryId: string): Promise<IBrewery | null> {
+    const brewery = this.stubBreweries.find(
+      (brewery: IBrewery) => brewery.id === breweryId
+    );
+    return brewery ?? null;
   }
   // async fetchBreweriesByInputValue(query: string): Promise<Brewery[]> {
   //   try {
