@@ -1,7 +1,7 @@
-import Beer from "./Beer";
-import { User } from "./User";
+import IBeer from "./Beer";
+import { IUser } from "./User";
 
-export default interface Brewery {
+export default interface IBrewery {
   id: string;
   name: string;
   brewery_type: string;
@@ -18,7 +18,7 @@ export default interface Brewery {
   longitude: number;
   latitude: number;
   brewery_description?: string;
-  signature_beer?: Beer;
-  likes?: User[];
+  signature_beer?: IBeer;
+  likes?: IUser[];
   images?: [];
 }
