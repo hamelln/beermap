@@ -6,6 +6,15 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+button {
+  background-color: transparent;
+  border: none;
+}
+
+li {
+  list-style: none;
+}
+
 * {
   box-sizing: border-box;
 }
