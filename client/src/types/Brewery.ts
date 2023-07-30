@@ -1,4 +1,5 @@
 import IBeer from "./Beer";
+import IOfficeHours from "./OfficeHours";
 import { IUser } from "./User";
 
 export default interface IBrewery {
@@ -17,8 +18,9 @@ export default interface IBrewery {
   website_url?: string;
   longitude: number;
   latitude: number;
-  brewery_description?: string;
-  signature_beer?: IBeer;
+  brewery_description: string;
+  office_hours: IOfficeHours;
+  signature_beer: IBeer;
   likes?: IUser[];
-  images?: [];
+  images?: string[];
 }
