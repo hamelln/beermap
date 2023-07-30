@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React, { MouseEvent, useEffect, useState, useTransition } from "react";
+import { useRouter } from "next/navigation";
 import BreweriesApi from "@/services/BreweriesApi";
-import Brewery from "@/types/Brewery";
 import styles from "./breweries.module.scss";
+import IBrewery from "@/types/Brewery";
 
 interface Props {
   inputValue: string;
 }
 
 const Breweries = ({ inputValue }: Props) => {
-  const [breweriesList, setBreweriesList] = useState<Brewery[]>([]);
+  const [breweriesList, setBreweriesList] = useState<IBrewery[]>([]);
+  const [isPending, startTransition] = useTransition();
   const breweriesApi = new BreweriesApi();
-
+  const router = useRouter();
   const handleBreweriesList = async () => {
     if (!inputValue) setBreweriesList([]);
     else {
@@ -21,15 +23,26 @@ const Breweries = ({ inputValue }: Props) => {
     }
   };
 
+  const handleClick = (e: MouseEvent<HTMLLIElement>, breweryId: string) => {
+    e.preventDefault();
+    router.push(`/search/${breweryId}`);
+  };
+
   useEffect(() => {
-    handleBreweriesList();
+    startTransition(() => {
+      handleBreweriesList();
+    });
   }, [inputValue]);
 
   return (
     <section className={styles.section}>
       <ul className={styles.brewery_list} data-testid="searchResult">
-        {breweriesList.map((brewery: Brewery) => (
-          <li className={styles.brewery_item} key={brewery.id}>
+        {breweriesList.map((brewery: IBrewery) => (
+          <li
+            className={styles.brewery_item}
+            key={brewery.id}
+            onClick={(e) => handleClick(e, brewery.id)}
+          >
             <div className={styles.inner_box}>
               <div className={styles.image_box}>
                 <img src="/test-image.png" alt="가게 이미지"></img>
