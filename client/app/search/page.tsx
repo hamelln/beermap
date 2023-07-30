@@ -1,8 +1,8 @@
 "use client";
 
 import React, { ChangeEvent, useState } from "react";
-import Breweries from "./breweries/breweries";
-import SearchBar from "./search-bar/searchBar";
+import SearchBar from "./search-bar/SearchBar";
+import Breweries from "./breweries/Breweries";
 
 const Search = () => {
   const [inputValue, setInputValue] = useState<string>("");
