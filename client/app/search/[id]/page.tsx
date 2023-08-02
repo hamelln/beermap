@@ -6,6 +6,7 @@ import Carousel from "@/app/search/[id]/carousel/Carousel";
 import StarButton from "./star/StarButton";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
+import BottomSheet from "./map/BottomSheet";
 
 interface Props {
   params: { id: string };
@@ -61,6 +62,7 @@ export default async function BreweryDetails({ params }: Props) {
           <p>{beerDescription}</p>
         </div>
       </section>
+      <BottomSheet />
     </article>
   );
 }
