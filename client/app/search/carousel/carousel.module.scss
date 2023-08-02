@@ -1,4 +1,32 @@
-.carousel_img {
+.main {
+  position: relative;
   width: 100%;
-  aspect-ratio: 16/15;
+}
+
+.carousel_image {
+  width: 100%;
+  aspect-ratio: 1/1;
+}
+
+.indicator {
+  position: absolute;
+  bottom: 10px;
+  right: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: rgba(47, 47, 47, 0.78);
+  color: #f3f3f3;
+}
+
+.prev_page_arrow {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  color: white;
+  z-index: 99;
+  font-size: 40px;
 }
