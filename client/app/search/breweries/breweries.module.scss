@@ -21,6 +21,8 @@
 
 .brewery_item:not(:first-child) {
   border-top: 1px solid #909090;
+  border-width: 1px;
+  border-left: 20px;
 }
 
 .brewery_item:hover {
@@ -35,6 +37,7 @@
 }
 
 .brewery_desc {
+  width: 100%;
   font-size: 14px;
   color: #504c4c;
   margin-top: 4px;

@@ -1,0 +1,122 @@
+.main {
+  position: relative;
+  border: 1px solid black;
+  width: 100%;
+  padding-bottom: 16px;
+}
+
+.title_header,
+.info_section,
+.description_section,
+.recommend_section {
+  padding: 0 1em;
+}
+
+.info_section,
+.description_section,
+.recommend_section {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.description_section,
+.recommend_section {
+  margin-top: 10px;
+}
+
+.title {
+  margin-block-start: auto;
+  margin-block-end: auto;
+}
+
+.info_section {
+  > :not(:first-child) {
+    margin-top: 6px;
+  }
+}
+.address_box {
+  & span {
+    text-decoration: underline;
+  }
+}
+
+.office_hours_box {
+  cursor: pointer;
+}
+
+.cutline {
+  width: 94%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 10px auto;
+}
+
+.address_box,
+.office_hours_box,
+.phone_box,
+.site_box {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.title_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.description_section,
+.beer_figure {
+  & p {
+    font-size: 14px;
+    color: #473f3f;
+    margin: 0;
+  }
+}
+
+.beer_title_box {
+  display: flex;
+  align-items: center;
+  column-gap: 6px;
+}
+
+.beer_recommendation {
+  color: #ffa800;
+}
+
+.beer_name {
+  margin: 2px 0;
+  font-weight: normal;
+  color: #6a2008;
+  font-size: 18px;
+}
+
+.info_section {
+  position: relative;
+}
+
+.address_box {
+  cursor: pointer;
+}
+
+.notification {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 4px;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.569);
+  color: #f2f2f2;
+  font-size: 12px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.show_notification {
+  opacity: 1;
+  visibility: visible;
+}
