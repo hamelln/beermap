@@ -35,16 +35,18 @@ const Carousel = ({ images }: Props) => {
       <Slider {...settings}>
         {images.map((image: string, index: number) => {
           return (
-            <li key={index}>
+            <li className={S.carousel_card} key={index}>
               <img
                 className={S.carousel_image}
                 src={image}
                 alt="brewery image"
               />
+              <div className={S.carosel_background}></div>
             </li>
           );
         })}
       </Slider>
+
       <div className={S.indicator}>
         {currentSlide + 1} / {images.length}
       </div>
