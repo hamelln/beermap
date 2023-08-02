@@ -1,15 +1,8 @@
 .brewery_item {
-  list-style: none;
   padding: 14px;
   width: 100%;
   cursor: pointer;
   transition: background-color 0.1s ease;
-}
-
-.brewery_item:not(:first-child) {
-  border-top: 1px solid #909090;
-  border-width: 1px;
-  border-left: 20px;
 }
 
 .brewery_item:hover {
@@ -24,11 +17,16 @@
 }
 
 .brewery_desc {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
   width: 100%;
   font-size: 14px;
   color: #504c4c;
   margin-top: 4px;
   margin-bottom: 10px;
+  padding-right: 1rem;
 }
 
 .recommend_title {
@@ -39,4 +37,11 @@
 
 .address {
   margin-top: 14px;
+}
+
+.cutline:not(:last-child) {
+  width: 93%;
+  height: 1px;
+  background-color: #ccc;
+  margin: 2px auto;
 }
