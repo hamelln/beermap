@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 
 interface Props {
   brewery: Brewery;
-  saveSearchInfo: any;
+  saveSearchInfo: () => void;
 }
 
 const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {

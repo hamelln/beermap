@@ -1,11 +1,11 @@
 import React from "react";
 import Brewery from "@/types/Brewery";
-import S from "./Brewery.module.scss";
 import BreweriesApi from "@/services/BreweriesApi";
 import Notfound from "./not-found";
-import Carousel from "@/app/search/carousel/Carousel";
+import Carousel from "@/app/search/[id]/carousel/Carousel";
 import StarButton from "./star/StarButton";
-import Contact from "./Contact";
+import S from "./BreweryDetails.module.scss";
+import Contact from "./contact/Contact";
 
 interface Props {
   params: { id: string };
