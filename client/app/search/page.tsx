@@ -12,8 +12,8 @@ import {
 } from "@/utils/search-result-cacher";
 
 const Search = () => {
-  const [inputText, setInputText] = useState<string>(loadKeyword());
-  const [breweries, setbreweries] = useState<Brewery[]>(loadBreweries());
+  const [inputText, setInputText] = useState<string>("");
+  const [breweries, setbreweries] = useState<Brewery[]>([]);
   const [isPending, startTransition] = useTransition();
   const breweriesApi = new BreweriesApi();
 
@@ -32,8 +32,11 @@ const Search = () => {
   };
 
   useEffect(() => {
-    const scrollY = loadScrollPosition();
-    scrollTo(0, scrollY);
+    if (sessionStorage.length > 0) {
+      setInputText(loadKeyword());
+      setbreweries(loadBreweries());
+      scrollTo(0, loadScrollPosition());
+    }
   }, []);
 
   useEffect(() => {
