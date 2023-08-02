@@ -4,10 +4,12 @@
   top: 0;
   left: 0;
   right: 0;
-  width: 30%;
+  width: 32%;
   height: 48px;
   padding: 12px;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #dedede;
+  background-color: white;
+  z-index: 9999;
 }
 
 .inner_box {
