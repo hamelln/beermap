@@ -1,0 +1,35 @@
+.main {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  transform: translateY(0);
+  transition: transform 1s ease;
+}
+
+.main.active {
+  transform: translateY(0);
+  background-color: black;
+}
+
+.map_icon {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  width: 100vw;
+  height: min-content;
+  text-align: center;
+  cursor: pointer;
+  z-index: 999999;
+}
+
+.google_map_slide {
+  position: fixed;
+  top: 10vh;
+  left: 0;
+  width: 100vw;
+  height: 92vh;
+  z-index: 999;
+  transition: all 0.3s ease-in-out;
+}
