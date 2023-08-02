@@ -1,66 +1,71 @@
-import React, { MouseEvent, useEffect, useState, useTransition } from "react";
+import React, { MouseEvent } from "react";
 import { useRouter } from "next/navigation";
-import BreweriesApi from "@/services/BreweriesApi";
-import styles from "./breweries.module.scss";
-import IBrewery from "@/types/Brewery";
+import S from "./Breweries.module.scss";
+import Brewery from "@/types/Brewery";
+import {
+  saveBreweries,
+  saveKeyword,
+  saveScrollPosition,
+} from "@/utils/search-result-cacher";
 
 interface Props {
-  inputValue: string;
+  inputText: string;
+  breweries: Brewery[];
 }
 
-const Breweries = ({ inputValue }: Props) => {
-  const [breweriesList, setBreweriesList] = useState<IBrewery[]>([]);
-  const [isPending, startTransition] = useTransition();
-  const breweriesApi = new BreweriesApi();
+const Breweries = ({ inputText, breweries }: Props) => {
   const router = useRouter();
-  const handleBreweriesList = async () => {
-    if (!inputValue) setBreweriesList([]);
-    else {
-      const newBreweries = await breweriesApi.fetchBreweriesByInputValue(
-        inputValue
-      );
-      setBreweriesList(newBreweries);
-    }
-  };
 
   const handleClick = (e: MouseEvent<HTMLLIElement>, breweryId: string) => {
     e.preventDefault();
+    saveKeyword(inputText);
+    saveBreweries(breweries);
+    saveScrollPosition(window.scrollY);
     router.push(`/search/${breweryId}`);
   };
 
-  useEffect(() => {
-    startTransition(() => {
-      handleBreweriesList();
-    });
-  }, [inputValue]);
-
   return (
-    <section className={styles.section}>
-      <ul className={styles.brewery_list} data-testid="searchResult">
-        {breweriesList.map((brewery: IBrewery) => (
-          <li
-            className={styles.brewery_item}
-            key={brewery.id}
-            onClick={(e) => handleClick(e, brewery.id)}
-          >
-            <div className={styles.inner_box}>
-              <div className={styles.image_box}>
-                <img src="/test-image.png" alt="가게 이미지"></img>
-              </div>
-              <div className={styles.content_box}>
-                <div className={styles.brewery_name}>{brewery.name}</div>
-                <div className={styles.brewery_desc}>브루어리 소개문</div>
-                <div className={styles.recommend_box}>
-                  <span className={styles.recommend_title}>추천 맥주</span>
-                  <span className={styles.recommend_beer}>미노리 세션</span>
+    <section className={S.section}>
+      <ul className={S.brewery_list} data-testid="searchResult">
+        {breweries.map(
+          ({
+            id,
+            breweryName,
+            breweryDescription,
+            signatureBeer,
+            stateProvince,
+            city,
+            address1,
+          }: Brewery) => {
+            const fullAddress = `${stateProvince} ${city} ${address1}`;
+            return (
+              <li
+                className={S.brewery_item}
+                key={id}
+                onClick={(e) => handleClick(e, id)}
+              >
+                <div className={S.inner_box}>
+                  <div className={S.image_box}>
+                    <img src="/test-image.png" alt="가게 이미지"></img>
+                  </div>
+                  <div className={S.content_box}>
+                    <div className={S.brewery_name}>{breweryName}</div>
+                    <div className={S.brewery_desc}>{breweryDescription}</div>
+                    <div className={S.recommend_box}>
+                      <span className={S.recommend_title}>추천 맥주</span>
+                      <span className={S.recommend_beer}>
+                        {signatureBeer.beerName}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-            <div className={styles.address}>
-              <span>{brewery.address_1}</span>
-            </div>
-          </li>
-        ))}
+                <div className={S.address}>
+                  <span>{fullAddress}</span>
+                </div>
+              </li>
+            );
+          }
+        )}
       </ul>
     </section>
   );
