@@ -25,7 +25,11 @@ const Breweries = ({ inputText, breweries }: Props) => {
       <ul className={S.brewery_list} data-testid="searchResult">
         {breweries.map((brewery: Brewery) => {
           return (
-            <BreweryCard brewery={brewery} saveSearchInfo={saveSearchInfo} />
+            <BreweryCard
+              key={brewery.id}
+              brewery={brewery}
+              saveSearchInfo={saveSearchInfo}
+            />
           );
         })}
       </ul>
