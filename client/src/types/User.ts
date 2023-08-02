@@ -1,7 +1,7 @@
-import IBrewery from "./Brewery";
+import Brewery from "./Brewery";
 
-export interface IUser {
-  name: string;
+export interface User {
+  userName: string;
   email: string;
-  likes: IBrewery[];
+  likes: Brewery[];
 }

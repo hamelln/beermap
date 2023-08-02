@@ -1,4 +1,4 @@
-export default interface IBeer {
-  name: string;
-  beer_description: string;
+export default interface Beer {
+  beerName: string;
+  beerDescription: string;
 }
