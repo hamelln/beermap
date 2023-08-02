@@ -1,9 +1,10 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import S from "./Contact.module.scss";
 import Brewery from "@/types/Brewery";
 import useDebounce from "@/utils/useDebounce";
+import MouseClick from "@/types/MouseClick";
 
 const Contact = ({
   stateProvince,
@@ -16,29 +17,36 @@ const Contact = ({
   "stateProvince" | "city" | "address1" | "phone" | "websiteUrl"
 >) => {
   const [showNotification, setShowNotification] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const debouncedSetShowNotification = useDebounce(() => {
     setShowNotification(false);
   });
   const fullAddress = `${stateProvince} ${city} ${address1}`;
-
   const phoneNumber = phone.replaceAll("-", "");
-  const handleClick = () => {
+  const handleClick = (e: MouseClick) => {
+    e.stopPropagation();
     const address = `${stateProvince} ${city} ${address1}`;
     navigator.clipboard.writeText(address);
     setShowNotification(true);
     debouncedSetShowNotification();
   };
 
+  const openMap = () => {};
+
   return (
     <section className={S.info_section}>
-      <address className={S.address_box}>
+      <address className={S.address_box} onClick={openMap}>
         <img
           className={S.address_image}
           src="/images/icons/location.svg"
           alt="Address icon"
         />
         <span>{fullAddress}</span>
-        <button className={S.copy_address_button} onClick={handleClick}>
+        <button
+          className={S.copy_address_button}
+          onClick={handleClick}
+          ref={buttonRef}
+        >
           <img src="/images/icons/copy.svg" alt="Copy icon" />
         </button>
         <div
