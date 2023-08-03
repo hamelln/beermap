@@ -1,9 +1,11 @@
 import { Request, Response } from "express";
-import { getBreweryById } from "../services/breweryService";
+import BreweryService from "../services/breweryService";
+
+const breweryService = new BreweryService();
 
 const breweryController = (req: Request, res: Response) => {
   const id = req.params.id;
-  const brewery = getBreweryById(id);
+  const brewery = breweryService.getBreweryById(id);
   if (brewery) {
     res.json(brewery);
   } else {

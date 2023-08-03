@@ -3,8 +3,8 @@ import passport from "passport";
 import path from "path";
 import cors from "cors";
 import passportConfig from "./passport";
-import { loadAllBreweries } from "./services/breweryService";
 import searchRouter from "./routes/searchRouter";
+import BreweryService from "./services/breweryService";
 
 passportConfig();
 
@@ -33,5 +33,6 @@ app.use(passport.initialize());
 app.use("/search", searchRouter);
 
 (async () => {
-  await loadAllBreweries(); // 서버 시작 시 데이터 로드
+  const breweryService = new BreweryService();
+  await breweryService.loadAllBreweries(); // 서버 시작 시 데이터 로드
 })();

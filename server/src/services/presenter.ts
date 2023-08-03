@@ -7,7 +7,7 @@ import {
 } from "firebase/database";
 
 class Presenter {
-  database: Database;
+  private database: Database;
 
   constructor(database: Database) {
     this.database = database;
