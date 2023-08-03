@@ -1,5 +1,8 @@
 .main {
+  position: relative;
   width: 100vw;
   height: 90vh;
-  z-index: 99999;
+  z-index: 9999;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
 }

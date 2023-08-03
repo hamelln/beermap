@@ -14,3 +14,12 @@
   transition: transform 150ms ease-out;
   z-index: 100;
 }
+
+.content {
+  position: relative;
+  width: 100vw;
+  height: 90vh;
+  z-index: 9999;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
