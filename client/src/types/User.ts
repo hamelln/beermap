@@ -1,7 +1,7 @@
 import Brewery from "./Brewery";
 
 export interface User {
-  name: string;
+  userName: string;
   email: string;
   likes: Brewery[];
 }
