@@ -1,13 +1,22 @@
 .main {
   position: relative;
-  width: 100%;
+  width: 100vw;
+}
+
+.prev_page_arrow {
+  position: absolute;
+  top: 0;
+  left: 4px;
+  color: white;
+  z-index: 9;
+  font-size: 40px;
 }
 
 .carosel_background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   z-index: 8;
   background-image: linear-gradient(
@@ -20,12 +29,12 @@
 
 .carousel_image {
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 9/8;
 }
 
 .indicator {
   position: absolute;
-  bottom: 10px;
+  bottom: 18px;
   right: 8px;
   display: flex;
   align-items: center;
@@ -35,13 +44,4 @@
   border-radius: 18px;
   background-color: rgba(47, 47, 47, 0.78);
   color: #f3f3f3;
-}
-
-.prev_page_arrow {
-  position: absolute;
-  top: 0;
-  left: 4px;
-  color: white;
-  z-index: 9;
-  font-size: 40px;
 }

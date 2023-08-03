@@ -22,6 +22,7 @@ const Carousel = ({ images }: Props) => {
     beforeChange: (_: number, newSlide: number) => setCurrentSlide(newSlide),
     dots: false,
     infinite: true,
+    arrows: false,
     speed: 300,
     slidesToShow: 1,
     slidesToScroll: 1,
@@ -35,7 +36,7 @@ const Carousel = ({ images }: Props) => {
       <Slider {...settings}>
         {images.map((image: string, index: number) => {
           return (
-            <li className={S.carousel_card} key={index}>
+            <li key={index}>
               <img
                 className={S.carousel_image}
                 src={image}
