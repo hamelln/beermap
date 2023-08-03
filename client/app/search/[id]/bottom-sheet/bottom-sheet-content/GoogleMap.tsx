@@ -67,7 +67,7 @@ const GoogleMaps = () => {
                 setSelectedMarker(undefined);
               }}
             >
-              <span>as</span>
+              <span>mansndjs</span>
             </InfoWindowF>
           )}
         </GoogleMap>

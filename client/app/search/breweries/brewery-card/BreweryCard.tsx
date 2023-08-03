@@ -23,8 +23,8 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
     e.preventDefault();
-    saveSearchInfo();
     router.push(`/search/${id}`);
+    saveSearchInfo();
   };
 
   return (
