@@ -25,6 +25,7 @@ export default async function BreweryDetails({ params }: Props) {
     address1,
     phone,
     websiteUrl,
+    officeHours,
   } = breweryInfo;
   const { beerName, beerDescription } = breweryInfo.signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
@@ -43,6 +44,7 @@ export default async function BreweryDetails({ params }: Props) {
           address1={address1}
           phone={phone}
           websiteUrl={websiteUrl}
+          officeHours={officeHours}
         />
         <div className={S.cutline}></div>
         <section className={S.description_section}>

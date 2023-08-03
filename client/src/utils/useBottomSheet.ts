@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 interface BottomSheetMetrics {
   touchStart: {
@@ -12,6 +12,7 @@ interface BottomSheetMetrics {
 }
 
 export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
+  const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
   const sheet = useRef<HTMLDivElement>(null);
 
   const metrics = useRef<BottomSheetMetrics>({
@@ -72,8 +73,8 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
       );
     };
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      const { touchStart, touchMove } = metrics.current;
+    const handleTouchEnd = () => {
+      const { touchStart } = metrics.current;
 
       // Snap Animation
       const currentSheetY = sheet.current!.getBoundingClientRect().y;
@@ -84,6 +85,7 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
           "transform",
           `translateY(${-MAX_Y}px)`
         );
+        if (!isMapOpen) setIsMapOpen(true);
       }
       if (distance >= 100 || (distance > -100 && distance < 0)) {
         sheet.current!.style.setProperty("transform", `translateY(${0}px`);
@@ -113,5 +115,5 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
     };
   }, [sheet.current]);
 
-  return { sheet };
+  return { sheet, isMapOpen };
 }
