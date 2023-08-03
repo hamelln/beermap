@@ -1,7 +1,7 @@
-import { Brewery } from "./brewery";
+import Brewery from "./brewery";
 
 export interface User {
-  name: string;
+  userName: string;
   email: string;
   likes: Brewery[];
 }

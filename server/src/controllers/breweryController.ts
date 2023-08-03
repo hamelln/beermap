@@ -7,7 +7,7 @@ const breweryController = (req: Request, res: Response) => {
   if (brewery) {
     res.json(brewery);
   } else {
-    res.status(404).json({ error: "Brewery not found" });
+    res.status(404).json({ error: "찾으시는 브루어리가 없습니다." });
   }
 };
 
