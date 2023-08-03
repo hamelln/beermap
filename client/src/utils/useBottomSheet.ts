@@ -9,11 +9,13 @@ interface BottomSheetMetrics {
     prevTouchY?: number; // 다음 touchmove 이벤트 핸들러에서 필요한 터치 포인트 Y값을 저장
     movingDirection: "none" | "down" | "up"; // 유저가 터치를 움직이고 있는 방향
   };
+  isContentAreaTouched: boolean;
 }
 
 export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
   const [isMapOpen, setIsMapOpen] = useState<boolean>(false);
   const sheet = useRef<HTMLDivElement>(null);
+  const content = useRef<HTMLDivElement>(null);
 
   const metrics = useRef<BottomSheetMetrics>({
     touchStart: {
@@ -24,11 +26,17 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
       prevTouchY: 0,
       movingDirection: "none",
     },
+    isContentAreaTouched: false,
   });
 
   // Touch Event 핸들러들을 등록한다.
   useEffect(() => {
     const sheetCurrent = sheet.current!;
+
+    const canUserMoveBottomSheet = () => {
+      const { isContentAreaTouched } = metrics.current;
+      return !isContentAreaTouched;
+    };
 
     const handleTouchStart = (e: TouchEvent) => {
       const { touchStart } = metrics.current;
@@ -37,9 +45,6 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (!e.cancelable) return;
-      e.preventDefault();
-
       const { touchStart, touchMove } = metrics.current;
       const currentTouch = e.touches[0];
 
@@ -53,27 +58,34 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
         touchMove.movingDirection = "up";
       }
 
-      // 터치 시작점에서부터 현재 터치 포인트까지의 변화된 y값
-      const touchDistance = currentTouch.clientY - touchStart.touchY;
-      let nextSheetY = touchStart.sheetY + touchDistance;
+      if (canUserMoveBottomSheet()) {
+        e.preventDefault();
+        // 터치 시작점에서부터 현재 터치 포인트까지의 변화된 y값
+        const touchDistance = currentTouch.clientY - touchStart.touchY;
+        let nextSheetY = touchStart.sheetY + touchDistance;
 
-      // nextSheetY 는 MIN_Y와 MAX_Y 사이의 값으로 clamp 되어야 한다
-      if (nextSheetY <= MIN_Y) {
-        nextSheetY = MIN_Y;
+        // nextSheetY 는 MIN_Y와 MAX_Y 사이의 값으로 clamp 되어야 한다
+        if (nextSheetY <= MIN_Y) {
+          nextSheetY = MIN_Y;
+        }
+
+        if (nextSheetY >= MAX_Y) {
+          nextSheetY = MAX_Y;
+        }
+
+        // sheet 위치 갱신.
+        sheet.current!.style.setProperty(
+          "transform",
+          `translateY(${nextSheetY - MAX_Y}px)`
+        );
+      } else {
+        // 컨텐츠를 스크롤하는 동안에는 body가 스크롤되는 것을 막습니다
+        document.body.style.overflowY = "hidden";
       }
-
-      if (nextSheetY >= MAX_Y) {
-        nextSheetY = MAX_Y;
-      }
-
-      // sheet 위치 갱신.
-      sheet.current!.style.setProperty(
-        "transform",
-        `translateY(${nextSheetY - MAX_Y}px)`
-      );
     };
 
     const handleTouchEnd = () => {
+      document.body.style.overflowY = "auto";
       const { touchStart } = metrics.current;
 
       // Snap Animation
@@ -101,6 +113,7 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
           prevTouchY: 0,
           movingDirection: "none",
         },
+        isContentAreaTouched: false,
       };
     };
 
@@ -115,5 +128,17 @@ export function useBottomSheet(MIN_Y: number, MAX_Y: number) {
     };
   }, [sheet.current]);
 
-  return { sheet, isMapOpen };
+  useEffect(() => {
+    const contentCurrent = content.current!;
+    const handleTouchStart = () => {
+      metrics.current.isContentAreaTouched = true;
+    };
+
+    contentCurrent.addEventListener("touchstart", handleTouchStart);
+
+    return () =>
+      contentCurrent.removeEventListener("touchstart", handleTouchStart);
+  }, []);
+
+  return { sheet, isMapOpen, content };
 }
