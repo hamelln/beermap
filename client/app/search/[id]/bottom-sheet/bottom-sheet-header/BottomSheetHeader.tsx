@@ -1,18 +1,16 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 import S from "./BottomSheetHeader.module.scss";
-import MouseClick from "@/types/MouseClick";
 
 interface Props {
-  handleClick: Dispatch<SetStateAction<MouseClick>>;
+  breweryName: string;
 }
 
-const BottomSheetHeader = () => {
+const BottomSheetHeader = ({ breweryName }: Props) => {
   return (
     <div className={S.main}>
       <div className={S.handle}></div>
       <div>
-        <button>X</button>
-        <span>브루어리 이름</span>
+        <span className={S.brewery_name}>{breweryName}</span>
       </div>
     </div>
   );
