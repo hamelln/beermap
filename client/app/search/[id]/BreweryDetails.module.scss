@@ -1,66 +1,49 @@
 .main {
   position: relative;
   width: 100vw;
-  height: 100%;
+  padding-bottom: 40px;
+}
+
+.info_box {
+  position: relative;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  background-color: white;
+  transform: translateY(-10px);
+  padding-top: 18px;
+  z-index: 20;
 }
 
 .title_header,
-.info_section,
 .description_section,
 .recommend_section {
   padding: 0 1rem;
 }
 
-.info_section,
-.description_section,
-.recommend_section {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-
 .description_section,
 .recommend_section {
   margin-top: 10px;
+  padding-bottom: 6px;
 }
 
 .title {
   margin-block-start: auto;
   margin-block-end: auto;
-}
-
-.info_section {
-  & :not(:first-child) {
-    margin-top: 4px;
-  }
-}
-
-.address_box {
-  & span {
-    text-decoration: underline;
-  }
+  font-weight: normal;
+  font-size: 1.6em;
 }
 
 .cutline {
-  width: 94%;
+  width: 94vw;
   height: 1px;
   background-color: #ccc;
   margin: 10px auto;
-}
-
-.address_box,
-.office_hours_box,
-.phone_box,
-.site_box {
-  display: flex;
-  align-items: center;
-  column-gap: 6px;
 }
 
 .title_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 10px;
 }
 
 .description_section,
