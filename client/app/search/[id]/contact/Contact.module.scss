@@ -1,54 +1,16 @@
 .main {
   position: relative;
-  border: 1px solid black;
-  width: 100%;
-  padding-bottom: 16px;
-}
-
-.title_header,
-.info_section,
-.description_section,
-.recommend_section {
-  padding: 0 1em;
-}
-
-.info_section,
-.description_section,
-.recommend_section {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-
-.description_section,
-.recommend_section {
-  margin-top: 10px;
-}
-
-.title {
-  margin-block-start: auto;
-  margin-block-end: auto;
-}
-
-.info_section {
+  width: 100vw;
+  padding: 6px 1em;
   > :not(:first-child) {
     margin-top: 6px;
   }
 }
+
 .address_box {
   & span {
     text-decoration: underline;
   }
-}
-
-.office_hours_box {
-  cursor: pointer;
-}
-
-.cutline {
-  width: 94%;
-  height: 1px;
-  background-color: #ccc;
-  margin: 10px auto;
 }
 
 .address_box,
@@ -58,51 +20,20 @@
   display: flex;
   align-items: center;
   column-gap: 6px;
+  cursor: pointer;
 }
 
 .phone_box {
   column-gap: 10px;
 }
-
-.title_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 10px;
+.office_hours_box {
+  align-items: start;
 }
 
-.description_section,
-.beer_figure {
-  & p {
-    font-size: 14px;
-    color: #473f3f;
-    margin: 0;
-  }
-}
-
-.beer_title_box {
+.office_hours_inner_box {
   display: flex;
   align-items: center;
   column-gap: 6px;
-}
-
-.beer_recommendation {
-  color: #ffa800;
-}
-
-.beer_name {
-  margin: 2px 0;
-  font-weight: normal;
-  color: #6a2008;
-  font-size: 18px;
-}
-
-.info_section {
-  position: relative;
-}
-
-.address_box {
-  cursor: pointer;
 }
 
 .notification {
@@ -124,4 +55,21 @@
 .show_notification {
   opacity: 1;
   visibility: visible;
+}
+
+.details {
+  position: relative;
+  transition: all 0.8s ease-out;
+}
+
+.feather_chevron {
+  transition: transform 0.2s ease-out;
+}
+
+details[open] .feather_chevron {
+  transform: rotate(180deg);
+}
+
+.summary {
+  list-style: none;
 }

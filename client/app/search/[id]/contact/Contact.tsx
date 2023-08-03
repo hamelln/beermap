@@ -34,7 +34,7 @@ const Contact = ({
   const openMap = () => {};
 
   return (
-    <section className={S.info_section}>
+    <section className={S.main}>
       <address className={S.address_box} onClick={openMap}>
         <img
           className={S.address_image}
@@ -63,9 +63,36 @@ const Contact = ({
           src="/images/icons/clock.svg"
           alt="Clock icon"
         />
-        <time className={S.todays_office_hours}>12:00 - 23:00</time>
-        <time className={S.todays_break_time}>16:00 - 17:00</time>
-        <button className={S.other_office_hours}>+</button>
+        <div>
+          <details className={S.details}>
+            <summary className={S.summary}>
+              <div>오늘(수)</div>
+              <div className={S.office_hours_inner_box}>
+                <time>12:00 - 23:00</time>
+                <div>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className={S.feather_chevron}
+                  >
+                    <polyline points="6 9 12 15 18 9"></polyline>
+                  </svg>
+                </div>
+              </div>
+            </summary>
+            <div className={S.content}>
+              <div>브레이크 타임</div>
+              <time>16:00 - 17:00</time>
+            </div>
+          </details>
+        </div>
       </div>
       <div className={S.phone_box}>
         <img
