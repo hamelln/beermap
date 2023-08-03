@@ -26,6 +26,8 @@ export default async function BreweryDetails({ params }: Props) {
     phone,
     websiteUrl,
     officeHours,
+    latitude,
+    longitude,
   } = breweryInfo;
   const { beerName, beerDescription } = breweryInfo.signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
@@ -66,7 +68,11 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      <BottomSheet />
+      <BottomSheet
+        breweryName={breweryName}
+        latitude={latitude}
+        longitude={longitude}
+      />
     </article>
   );
 }
