@@ -6,7 +6,7 @@ import Carousel from "@/app/search/[id]/carousel/Carousel";
 import StarButton from "./star/StarButton";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
-import BottomSheet from "./map/BottomSheet";
+import BottomSheet from "./bottom-sheet/BottomSheet";
 
 interface Props {
   params: { id: string };
@@ -32,36 +32,38 @@ export default async function BreweryDetails({ params }: Props) {
   return (
     <article className={S.main}>
       <Carousel images={images} />
-      <header className={S.title_header}>
-        <h2 className={S.title}>{breweryName}</h2>
-        <StarButton />
-      </header>
-      <Contact
-        stateProvince={stateProvince}
-        city={city}
-        address1={address1}
-        phone={phone}
-        websiteUrl={websiteUrl}
-      />
-      <div className={S.cutline}></div>
-      <section className={S.description_section}>
-        <p>{breweryDescription}</p>
-      </section>
-      <div className={S.cutline}></div>
-      <section className={S.recommend_section}>
-        <div className={S.beer_figure}>
-          <div className={S.beer_title_box}>
-            <img
-              className={S.beer_icon}
-              src="/images/icons/beer.svg"
-              alt="Beer icon"
-            />
-            <span className={S.beer_recommendation}>추천 맥주</span>
+      <div className={S.info_box}>
+        <header className={S.title_header}>
+          <h2 className={S.title}>{breweryName}</h2>
+          <StarButton />
+        </header>
+        <Contact
+          stateProvince={stateProvince}
+          city={city}
+          address1={address1}
+          phone={phone}
+          websiteUrl={websiteUrl}
+        />
+        <div className={S.cutline}></div>
+        <section className={S.description_section}>
+          <p>{breweryDescription}</p>
+        </section>
+        <div className={S.cutline}></div>
+        <section className={S.recommend_section}>
+          <div className={S.beer_figure}>
+            <div className={S.beer_title_box}>
+              <img
+                className={S.beer_icon}
+                src="/images/icons/beer.svg"
+                alt="Beer icon"
+              />
+              <span className={S.beer_recommendation}>추천 맥주</span>
+            </div>
+            <h3 className={S.beer_name}>{beerName}</h3>
+            <p>{beerDescription}</p>
           </div>
-          <h3 className={S.beer_name}>{beerName}</h3>
-          <p>{beerDescription}</p>
-        </div>
-      </section>
+        </section>
+      </div>
       <BottomSheet />
     </article>
   );
