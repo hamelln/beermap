@@ -67,9 +67,13 @@
 }
 
 details[open] .feather_chevron {
-  transform: rotate(180deg);
+  transform: rotate(-180deg);
 }
 
 .summary {
   list-style: none;
+}
+
+.closed_day {
+  color: rgb(210, 0, 0) d;
 }
