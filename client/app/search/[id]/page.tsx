@@ -1,7 +1,6 @@
 import React, { Suspense } from "react";
 import Brewery from "@/types/Brewery";
 import BreweriesApi from "@/services/BreweriesApi";
-import Notfound from "./not-found";
 import Carousel from "@/app/search/[id]/carousel/Carousel";
 import StarButton from "./star/StarButton";
 import S from "./BreweryDetails.module.scss";
@@ -32,6 +31,17 @@ export default async function BreweryDetails({ params }: Props) {
   } = breweryInfo;
   const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
+  const breweryDescriptionTexts = breweryDescription.split("\\n");
+  const EnteredBreweryDescription = breweryDescriptionTexts.map(
+    (line, index) => {
+      return (
+        <span>
+          {line}
+          {index < breweryDescriptionTexts.length - 1 && <br />}
+        </span>
+      );
+    }
+  );
 
   return (
     <article className={S.main}>
@@ -61,7 +71,7 @@ export default async function BreweryDetails({ params }: Props) {
         </Suspense>
         <div className={S.cutline}></div>
         <section className={S.description_section}>
-          <p>{breweryDescription}</p>
+          {EnteredBreweryDescription}
         </section>
         <div className={S.cutline}></div>
         <section className={S.recommend_section}>
