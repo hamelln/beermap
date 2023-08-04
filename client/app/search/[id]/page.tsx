@@ -16,8 +16,7 @@ interface Props {
 export default async function BreweryDetails({ params }: Props) {
   const breweriesApi = new BreweriesApi();
   const id = params.id;
-  const breweryInfo: Brewery | null = await breweriesApi.fetchBreweryById(id);
-  if (!breweryInfo) return <Notfound />;
+  const breweryInfo: Brewery = await breweriesApi.fetchBreweryById(id);
   const {
     breweryName,
     breweryDescription,
@@ -29,8 +28,9 @@ export default async function BreweryDetails({ params }: Props) {
     officeHours,
     latitude,
     longitude,
+    signatureBeer,
   } = breweryInfo;
-  const { beerName, beerDescription } = breweryInfo.signatureBeer;
+  const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
 
   return (

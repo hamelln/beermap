@@ -14,8 +14,28 @@ interface Props {
 const Carousel = ({ images }: Props) => {
   const [currentSlide, setCurrentSlide] = useState<number>(0);
   const router = useRouter();
-  const handleClick = () => {
-    router.back();
+
+  const redirectToSearchPage = (): void => {
+    window.location.href = "/search";
+  };
+
+  const isDifferentDomain = (
+    previousUrl: string,
+    hostName: string
+  ): boolean => {
+    const previousHostname = previousUrl.split("/")[2];
+    return !previousUrl || previousHostname !== hostName;
+  };
+
+  const handleClick = (): void => {
+    const previousUrl = document.referrer;
+    const hostName = window.location.hostname;
+
+    if (isDifferentDomain(previousUrl, hostName)) {
+      redirectToSearchPage();
+    } else {
+      router.back();
+    }
   };
 
   const settings = {
