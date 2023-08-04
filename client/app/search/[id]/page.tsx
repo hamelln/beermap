@@ -22,7 +22,7 @@ export default async function BreweryDetails({ params }: Props) {
     breweryDescription,
     stateProvince,
     city,
-    address1,
+    address,
     phone,
     websiteUrl,
     officeHours,
@@ -43,7 +43,7 @@ export default async function BreweryDetails({ params }: Props) {
         <Contact
           stateProvince={stateProvince}
           city={city}
-          address1={address1}
+          address={address}
           phone={phone}
           websiteUrl={websiteUrl}
           officeHours={officeHours}

@@ -10,24 +10,23 @@ import OpeningHours from "./OpeningHours";
 const Contact = ({
   stateProvince,
   city,
-  address1,
+  address,
   phone,
   websiteUrl,
   officeHours,
 }: Pick<
   Brewery,
-  "stateProvince" | "city" | "address1" | "phone" | "websiteUrl" | "officeHours"
+  "stateProvince" | "city" | "address" | "phone" | "websiteUrl" | "officeHours"
 >) => {
   const [showNotification, setShowNotification] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
   const debouncedSetShowNotification = useDebounce(() => {
     setShowNotification(false);
   });
-  const fullAddress = `${stateProvince} ${city} ${address1}`;
+  const fullAddress = `${stateProvince} ${city} ${address}`;
   const phoneNumber = phone.replaceAll("-", "");
   const handleClick = (e: MouseClick) => {
-    const address = `${stateProvince} ${city} ${address1}`;
-    navigator.clipboard.writeText(address);
+    navigator.clipboard.writeText(fullAddress);
     setShowNotification(true);
     debouncedSetShowNotification();
   };

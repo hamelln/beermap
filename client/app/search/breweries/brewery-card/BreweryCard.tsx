@@ -15,10 +15,10 @@ const BreweryCard = ({ brewery, saveSearchInfo }: Props) => {
     breweryDescription,
     stateProvince,
     city,
-    address1,
+    address,
     signatureBeer,
   } = brewery;
-  const fullAddress = `${stateProvince} ${city} ${address1}`;
+  const fullAddress = `${stateProvince} ${city} ${address}`;
   const router = useRouter();
 
   const handleClick = (e: MouseEvent<HTMLLIElement>) => {
