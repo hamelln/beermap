@@ -16,7 +16,7 @@ const Carousel = ({ images }: Props) => {
   const router = useRouter();
 
   const redirectToSearchPage = (): void => {
-    window.location.href = "/search";
+    router.replace("/search");
   };
 
   const isDifferentDomain = (
@@ -24,7 +24,7 @@ const Carousel = ({ images }: Props) => {
     hostName: string
   ): boolean => {
     const previousHostname = previousUrl.split("/")[2];
-    return !previousUrl || previousHostname !== hostName;
+    return previousUrl === "" || previousHostname.includes(hostName);
   };
 
   const handleClick = (): void => {
