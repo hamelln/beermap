@@ -12,12 +12,20 @@ class BreweriesApi {
     return breweries;
   }
 
-  async fetchBreweryById(breweryId: string): Promise<Brewery | null> {
-    const brewery: Brewery = await axios
-      .get(`${this.baseUrl}/search/${breweryId}`)
-      .then((res) => res.data);
+  async fetchBreweryById(breweryId: string): Promise<Brewery> {
+    try {
+      const brewery: Brewery = await axios
+        .get(`${this.baseUrl}/search/${breweryId}`)
+        .then((res) => res.data);
 
-    return brewery ?? null;
+      return brewery;
+    } catch (e: any) {
+      if (e.response.status === 404) {
+        throw new Error("찾으시는 브루어리가 없습니다.");
+      } else {
+        throw new Error(e.response.data.message);
+      }
+    }
   }
 }
 

@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import S from "./Carousel.module.scss";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter } from "next/navigation";
 
 interface Props {
@@ -33,21 +33,22 @@ const Carousel = ({ images }: Props) => {
       <button className={S.prev_page_arrow} onClick={handleClick}>
         <img src="/images/icons/back-arrow.svg" alt="back-arrow icon"></img>
       </button>
-      <Slider {...settings}>
-        {images.map((image: string, index: number) => {
-          return (
-            <li key={index}>
-              <img
-                className={S.carousel_image}
-                src={image}
-                alt="brewery image"
-              />
-              <div className={S.carosel_background}></div>
-            </li>
-          );
-        })}
-      </Slider>
-
+      <Suspense>
+        <Slider {...settings}>
+          {images.map((image: string, index: number) => {
+            return (
+              <li key={index}>
+                <img
+                  className={S.carousel_image}
+                  src={image}
+                  alt="brewery image"
+                />
+                <div className={S.carosel_background}></div>
+              </li>
+            );
+          })}
+        </Slider>
+      </Suspense>
       <div className={S.indicator}>
         {currentSlide + 1} / {images.length}
       </div>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Brewery from "@/types/Brewery";
 import BreweriesApi from "@/services/BreweriesApi";
 import Notfound from "./not-found";
@@ -7,6 +7,7 @@ import StarButton from "./star/StarButton";
 import S from "./BreweryDetails.module.scss";
 import Contact from "./contact/Contact";
 import BottomSheet from "./bottom-sheet/BottomSheet";
+import CarouselSkeleton from "./carousel/CarouselSkeleton";
 
 interface Props {
   params: { id: string };
@@ -34,20 +35,30 @@ export default async function BreweryDetails({ params }: Props) {
 
   return (
     <article className={S.main}>
-      <Carousel images={images} />
+      <Suspense fallback={<CarouselSkeleton />}>
+        <Carousel images={images} />
+      </Suspense>
       <div className={S.info_box}>
-        <header className={S.title_header}>
-          <h2 className={S.title}>{breweryName}</h2>
-          <StarButton />
-        </header>
-        <Contact
-          stateProvince={stateProvince}
-          city={city}
-          address={address}
-          phone={phone}
-          websiteUrl={websiteUrl}
-          officeHours={officeHours}
-        />
+        <Suspense
+          fallback={
+            <header className={S.title_header}>
+              <h2 className={S.title}>{breweryName}</h2>
+            </header>
+          }
+        >
+          <header className={S.title_header}>
+            <h2 className={S.title}>{breweryName}</h2>
+            <StarButton />
+          </header>
+          <Contact
+            stateProvince={stateProvince}
+            city={city}
+            address={address}
+            phone={phone}
+            websiteUrl={websiteUrl}
+            officeHours={officeHours}
+          />
+        </Suspense>
         <div className={S.cutline}></div>
         <section className={S.description_section}>
           <p>{breweryDescription}</p>
@@ -68,11 +79,13 @@ export default async function BreweryDetails({ params }: Props) {
           </div>
         </section>
       </div>
-      <BottomSheet
-        breweryName={breweryName}
-        latitude={latitude}
-        longitude={longitude}
-      />
+      <Suspense>
+        <BottomSheet
+          breweryName={breweryName}
+          latitude={latitude}
+          longitude={longitude}
+        />
+      </Suspense>
     </article>
   );
 }

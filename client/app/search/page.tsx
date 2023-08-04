@@ -31,11 +31,19 @@ const Search = () => {
     }
   };
 
+  const restoreScroll = (y: number) => {
+    if (y === 0 || window.scrollY !== 0) return;
+    requestAnimationFrame(() => {
+      scrollTo(0, y);
+      restoreScroll(y);
+    });
+  };
+
   useEffect(() => {
     if (sessionStorage.length > 0) {
       setInputText(loadKeyword());
       setbreweries(loadBreweries());
-      scrollTo(0, loadScrollPosition());
+      restoreScroll(loadScrollPosition());
     }
   }, []);
 

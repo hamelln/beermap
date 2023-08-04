@@ -1,6 +1,7 @@
 .main {
   position: relative;
   width: 100vw;
+  background-color: transparent;
 }
 
 .prev_page_arrow {
@@ -44,4 +45,27 @@
   border-radius: 18px;
   background-color: rgba(47, 47, 47, 0.78);
   color: #f3f3f3;
+}
+
+.spinner {
+  position: absolute;
+  top: calc(50% - 64px);
+  left: calc(50% - 64px);
+  animation: ldio 1s linear infinite;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  box-shadow: 0 4px 0 0 #ffa800;
+}
+
+@keyframes ldio {
+  0% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
