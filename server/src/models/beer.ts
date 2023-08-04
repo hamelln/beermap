@@ -1,5 +1,4 @@
-export interface Beer {
-  name: string;
-  beer_description: string;
-  beer_type: string;
+export default interface Beer {
+  beerName: string;
+  beerDescription: string;
 }

@@ -1,25 +1,23 @@
-import { Beer } from "./beer";
-import { StateProvince } from "./stateProvince";
-import { User } from "./user";
-import { Image } from "./image";
+import { User } from "./User";
+import OfficeHours from "./OfficeHours";
+import Beer from "./beer";
 
-export interface Brewery {
+export default interface Brewery {
   id: string;
-  name: string;
-  brewery_type: string;
-  address_1: string;
-  address_2?: string;
-  address_3?: string;
-  city: string;
-  state_province: string;
-  postal_code: number;
-  country: string;
-  phone: string;
-  website_url?: string;
-  longitude: string;
-  latitude: string;
-  brewery_description?: string;
-  signature_beer?: Beer;
+  breweryName: string;
+  breweryType: string;
+  breweryDescription: string;
+  officeHours: OfficeHours;
+  signatureBeer: Beer;
+  websiteType?: string;
+  websiteUrl?: string;
   likes?: User[];
-  images?: Image[];
+  images?: string[];
+  address: string;
+  city: string;
+  stateProvince: string;
+  postalCode: string;
+  phone: string;
+  longitude: number;
+  latitude: number;
 }
