@@ -33,6 +33,5 @@ app.use(passport.initialize());
 app.use("/search", searchRouter);
 
 (async () => {
-  const breweryService = new BreweryService();
-  await breweryService.loadAllBreweries(); // 서버 시작 시 데이터 로드
+  new BreweryService();
 })();
