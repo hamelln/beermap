@@ -4,7 +4,7 @@ import breweryController from "../controllers/breweryController";
 
 const searchRouter = express.Router();
 
-searchRouter.get("/", searchConroller);
 searchRouter.get("/:id", breweryController);
+searchRouter.post("/", searchConroller);
 
 export default searchRouter;
