@@ -1,6 +1,7 @@
 .main {
   display: flex;
   flex-direction: column;
+  background-color: var(--color-background-level-2);
   position: fixed;
   z-index: 1;
   top: 96%;
