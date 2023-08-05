@@ -1,5 +1,6 @@
 import "./normalize.scss";
 import "./global.scss";
+import ThemeButton from "./theme-button/ThemeButton";
 
 export const metadata = {
   title: "Next.js",
@@ -13,7 +14,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body suppressHydrationWarning={true}>{children}</body>
+      <body suppressHydrationWarning={true}>
+        <ThemeButton />
+        {children}
+      </body>
     </html>
   );
 }
