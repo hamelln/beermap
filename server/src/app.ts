@@ -3,7 +3,7 @@ import passport from "passport";
 import path from "path";
 import cors from "cors";
 import passportConfig from "./passport";
-import searchRouter from "./routes/searchRouter";
+import breweriesRouter from "./routes/breweriesRouter";
 import BreweryService from "./services/breweryService";
 
 passportConfig();
@@ -30,7 +30,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(passport.initialize());
-app.use("/search", searchRouter);
+app.use("/breweries", breweriesRouter);
 
 (async () => {
   new BreweryService();

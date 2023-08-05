@@ -3,7 +3,7 @@ import BreweryService from "../services/breweryService";
 
 const breweryService = BreweryService.getInstance();
 
-const searchConroller = (req: Request, res: Response) => {
+const breweriesController = (req: Request, res: Response) => {
   const query = String(req.query.q ?? "");
 
   if (!("filterOption" in req.body)) {
@@ -24,4 +24,4 @@ const searchConroller = (req: Request, res: Response) => {
   }
 };
 
-export default searchConroller;
+export default breweriesController;

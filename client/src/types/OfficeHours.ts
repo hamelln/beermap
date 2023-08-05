@@ -1,6 +1,6 @@
 interface OfficeHour {
-  openTime: string | null;
-  closeTime: string | null;
+  openTime: string;
+  closeTime: string;
   breakTime?: { startTime: string; endTime: string };
   lastOrder?: string;
 }

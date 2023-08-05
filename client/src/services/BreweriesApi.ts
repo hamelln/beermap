@@ -7,7 +7,7 @@ class BreweriesApi {
 
   async fetchBreweriesByInputText(query: string): Promise<Brewery[]> {
     const breweries: Brewery[] = await axios
-      .post(`${this.baseUrl}/search?q=${query}`)
+      .post(`${this.baseUrl}/breweries?q=${query}`)
       .then((res) => res.data);
     return breweries;
   }
@@ -15,7 +15,7 @@ class BreweriesApi {
   async fetchBreweryById(breweryId: string): Promise<Brewery> {
     try {
       const brewery: Brewery = await axios
-        .get(`${this.baseUrl}/search/${breweryId}`)
+        .get(`${this.baseUrl}/breweries/${breweryId}`)
         .then((res) => res.data);
 
       return brewery;
