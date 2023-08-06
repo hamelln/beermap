@@ -89,17 +89,32 @@ details.details[open] {
   color: var(--color-error);
 }
 
+.modal_box {
+  > button {
+    color: var(--color-font-primary);
+    padding: 6px 0;
+  }
+}
+
 dialog[open].modal {
-  width: 70vw;
-  height: 60vh;
+  width: 80vw;
+  min-height: 50vh;
+  border-radius: var(--border-radius-primary);
+  padding: 20px;
   background-color: var(--color-background);
   color: var(--color-font-secondary);
+  text-align: center;
+  font-size: var(--size-font-l);
   & p {
     margin: 0;
   }
 }
 
-.day_by_day {
-  border-bottom: 1px solid var(--color-font-secondary);
-  padding: 4px;
+.summarize_hour_box {
+  padding: 0.6rem;
+  line-height: 20px;
+}
+
+.summarize_title {
+  color: var(--color-font-secondary);
 }
