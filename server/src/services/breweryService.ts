@@ -1,9 +1,14 @@
 import StartFirebase from "../../firebase";
 import Brewery from "../models/brewery";
+import summarizeOfficeHours from "../utils/summarizeOfficeHours";
 import Presenter from "./presenter";
 
 interface BreweryJson {
   [K: string]: Brewery[];
+}
+
+interface BreweryDetailsProps extends Brewery {
+  summarizedOfficeHours: string[][];
 }
 
 export default class BreweryService {
@@ -55,8 +60,11 @@ export default class BreweryService {
     this.#createBreweryObject(this.breweryList);
   }
 
-  getBreweryById(id: string): Brewery {
-    return this.breweryObject[id];
+  getBreweryById(id: string): BreweryDetailsProps {
+    const brewery = this.breweryObject[id];
+    const summarizedOfficeHours = summarizeOfficeHours(brewery.officeHours);
+    const newBrewery = { ...brewery, summarizedOfficeHours };
+    return newBrewery;
   }
 
   getBreweriesByQuery(query: string): Brewery[] {
@@ -92,6 +100,8 @@ export default class BreweryService {
       breweryType === filterOption;
     });
   }
+
+  getSummarizedOfficeHour() {}
 }
 
 // export async function updateBreweriesData(): Promise<void> {
