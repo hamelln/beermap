@@ -98,7 +98,7 @@ details.details[open] {
 
 dialog[open].modal {
   width: 80vw;
-  min-height: 50vh;
+  min-height: 20vh;
   border-radius: var(--border-radius-primary);
   padding: 20px;
   background-color: var(--color-background);
@@ -117,4 +117,5 @@ dialog[open].modal {
 
 .summarize_title {
   color: var(--color-font-secondary);
+  margin: 0.8rem 0;
 }
