@@ -9,12 +9,14 @@ import LocationIcon from "@/app/icons/LocationIcon";
 import PhoneIcon from "@/app/icons/PhoneIcon";
 import LinkIcon from "@/app/icons/LinkIcon";
 import BreweryDetailsProps from "@/types/BreweryDetailsProps";
+import InstagramIcon from "@/app/icons/InstagramIcon";
 
 const Contact = ({
   stateProvince,
   city,
   address,
   phone,
+  websiteType,
   websiteUrl,
   officeHours,
   summarizedOfficeHours,
@@ -27,6 +29,7 @@ const Contact = ({
   | "websiteUrl"
   | "officeHours"
   | "summarizedOfficeHours"
+  | "websiteType"
 >) => {
   const [showNotification, setShowNotification] = useState(false);
   const debouncedSetShowNotification = useDebounce(() => {
@@ -39,6 +42,7 @@ const Contact = ({
     setShowNotification(true);
     debouncedSetShowNotification();
   };
+  console.log(websiteType);
 
   return (
     <section className={S.main}>
@@ -64,9 +68,9 @@ const Contact = ({
         </a>
       </div>
       <div className={S.site_box}>
-        <LinkIcon />
+        {websiteType === "홈페이지" ? <LinkIcon /> : <InstagramIcon />}
         <a href={websiteUrl} target="_blank" className={S.site_url}>
-          웹사이트
+          {websiteType}
         </a>
       </div>
     </section>

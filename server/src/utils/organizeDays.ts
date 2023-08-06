@@ -11,10 +11,10 @@ export default function organizeDays(dayString: string): string {
       return "월 ~ 목";
     case "월화수목금":
       return "월 ~ 금";
-    case "월화수토":
+    case "월화수목금토":
       return "월 ~ 토";
     case "월화수목금토일":
-      return "월 ~ 일";
+      return "매일";
     case "화수목":
       return "화 ~ 목";
     case "화수목금":
@@ -45,8 +45,8 @@ export default function organizeDays(dayString: string): string {
       return "금 ~ 월";
     case "금토일월화":
       return "금 ~ 화";
-    case "금토일월화수목":
-      return "금 ~ 목";
+    case "금토일월화수":
+      return "금 ~ 수";
     case "토일월":
       return "토 ~ 월";
     case "토일월화":
