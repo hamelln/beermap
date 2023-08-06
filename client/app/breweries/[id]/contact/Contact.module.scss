@@ -88,3 +88,18 @@ details.details[open] {
 .closed {
   color: var(--color-error);
 }
+
+dialog[open].modal {
+  width: 70vw;
+  height: 60vh;
+  background-color: var(--color-background);
+  color: var(--color-font-secondary);
+  & p {
+    margin: 0;
+  }
+}
+
+.day_by_day {
+  border-bottom: 1px solid var(--color-font-secondary);
+  padding: 4px;
+}

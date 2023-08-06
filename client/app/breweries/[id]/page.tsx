@@ -1,5 +1,4 @@
 import React, { Suspense } from "react";
-import Brewery from "@/types/Brewery";
 import BreweriesApi from "@/services/BreweriesApi";
 import Carousel from "@/app/breweries/[id]/carousel/Carousel";
 import StarButton from "./star/StarButton";
@@ -8,6 +7,7 @@ import Contact from "./contact/Contact";
 import BottomSheet from "./bottom-sheet/BottomSheet";
 import CarouselSkeleton from "./carousel/CarouselSkeleton";
 import BeerIcon from "@/app/icons/BeerIcon";
+import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
 interface Props {
   params: { id: string };
@@ -16,7 +16,9 @@ interface Props {
 export default async function BreweryDetails({ params }: Props) {
   const breweriesApi = new BreweriesApi();
   const id = params.id;
-  const breweryInfo: Brewery = await breweriesApi.fetchBreweryById(id);
+  const breweryInfo: BreweryDetailsProps = await breweriesApi.fetchBreweryById(
+    id
+  );
   const {
     breweryName,
     breweryDescription,
@@ -29,6 +31,7 @@ export default async function BreweryDetails({ params }: Props) {
     latitude,
     longitude,
     signatureBeer,
+    summarizedOfficeHours,
   } = breweryInfo;
   const { beerName, beerDescription } = signatureBeer;
   const images = ["/brewery-image.png", "/brewery-image.png"];
@@ -68,6 +71,7 @@ export default async function BreweryDetails({ params }: Props) {
             phone={phone}
             websiteUrl={websiteUrl}
             officeHours={officeHours}
+            summarizedOfficeHours={summarizedOfficeHours}
           />
         </Suspense>
         <div className={S.cutline}></div>

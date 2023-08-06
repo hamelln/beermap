@@ -1,14 +1,14 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import S from "./Contact.module.scss";
-import Brewery from "@/types/Brewery";
 import useDebounce from "@/utils/useDebounce";
 import MouseClick from "@/types/MouseClick";
 import OpeningHours from "./OfficeHours";
 import LocationIcon from "@/app/icons/LocationIcon";
 import PhoneIcon from "@/app/icons/PhoneIcon";
 import LinkIcon from "@/app/icons/LinkIcon";
+import BreweryDetailsProps from "@/types/BreweryDetailsProps";
 
 const Contact = ({
   stateProvince,
@@ -17,9 +17,16 @@ const Contact = ({
   phone,
   websiteUrl,
   officeHours,
+  summarizedOfficeHours,
 }: Pick<
-  Brewery,
-  "stateProvince" | "city" | "address" | "phone" | "websiteUrl" | "officeHours"
+  BreweryDetailsProps,
+  | "stateProvince"
+  | "city"
+  | "address"
+  | "phone"
+  | "websiteUrl"
+  | "officeHours"
+  | "summarizedOfficeHours"
 >) => {
   const [showNotification, setShowNotification] = useState(false);
   const debouncedSetShowNotification = useDebounce(() => {
@@ -46,7 +53,10 @@ const Contact = ({
           주소를 복사했습니다.
         </div>
       </address>
-      <OpeningHours officeHours={officeHours} />
+      <OpeningHours
+        officeHours={officeHours}
+        summarizedOfficeHours={summarizedOfficeHours}
+      />
       <div className={S.phone_box}>
         <PhoneIcon />
         <a href={`tel:${phoneNumber}`} className={S.phone_number}>
