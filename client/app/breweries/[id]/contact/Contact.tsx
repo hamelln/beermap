@@ -42,7 +42,6 @@ const Contact = ({
     setShowNotification(true);
     debouncedSetShowNotification();
   };
-  console.log(websiteType);
 
   return (
     <section className={S.main}>
