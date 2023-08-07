@@ -63,7 +63,6 @@ export default async function BreweryDetails({ params }: Props) {
         >
           <header className={S.title_header}>
             <h2 className={S.title}>{breweryName}</h2>
-            <StarButton />
           </header>
           <Contact
             stateProvince={stateProvince}

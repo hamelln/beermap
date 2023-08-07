@@ -1,15 +1,14 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useLayoutEffect, useState } from "react";
 import S from "./ThemeButton.module.scss";
 import SunIcon from "../icons/SunIcon";
 import MoonIcon from "../icons/MoonIcon";
 
 const ThemeButton = () => {
-  const savedTheme = localStorage.getItem("theme") ?? "light";
-  const [theme, setTheme] = useState<string>(savedTheme);
+  const [theme, setTheme] = useState<string>("");
 
-  const changeTheme = () => {
+  const changeTheme = (theme: string) => {
     document.body.setAttribute("data-theme", theme);
   };
 
@@ -17,15 +16,18 @@ const ThemeButton = () => {
     if (theme === "light") {
       setTheme("dark");
       localStorage.setItem("theme", "dark");
+      changeTheme("dark");
     } else {
       setTheme("light");
       localStorage.removeItem("theme");
+      changeTheme("light");
     }
   };
 
-  useEffect(() => {
-    changeTheme();
-  }, [theme]);
+  useLayoutEffect(() => {
+    const savedTheme = localStorage.getItem("theme") ?? "light";
+    changeTheme(savedTheme);
+  }, []);
 
   return (
     <div className={S.main} onClick={handleTheme}>
